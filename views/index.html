@@ -1,20 +1,29 @@
-<html>
-    <header>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
-        <title>Acme Products</title>
-        <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.css' />
-    </header>
-    <body>
-        <div class='container'>
-            <h1>Acme Products</h1>
-            <div class="well">
-                Welcome Acme Products! Our top selling product is <a href="/products/{{topId}}">{{topName}}</a> <br>
-                <a href='/products'>See all of our products!</a>
+{% extends "layout.html" %}
+
+{% block home %}
+<!-- Nav tabs -->
+<ul id='categoryTabs' class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="/">Home</a></li>
+    {% for cat in categories %}
+        <li><a href="/categories/{{cat}}/products">{{cat}}</a></li>
+    {% endfor %}
+</ul>
+
+<!-- Tab panes -->
+<div id="tabContent" class="tab-content">
+    <h2>Home</h2>
+    <div role="tabpanel" class="tab-pane active well" id="home">
+        <form method='POST' action='/products'>
+            <div class='form-group'>
+              <input name='categoryName' placeholder='category name' class='form-control'/>
             </div>
-        </div>
-    </body>
-</html>
+            <div class='form-group'>
+              <button class='btn btn-primary'>Save</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}
