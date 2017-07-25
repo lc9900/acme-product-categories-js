@@ -17,7 +17,7 @@
 <div id="tabContent" class="tab-content">
     <h2>Products for {{categoryName}}</h2>
     <div class="well">
-        <form method='POST' action='/products'>
+        <form method='POST' action='/categories/{{categoryName}}/products/'>
             <div class='form-group'>
               <input name='productName' placeholder='product name' class='form-control'/>
             </div>
@@ -26,6 +26,27 @@
             </div>
         </form>
     </div>
+
+    <ul class='list-group'>
+      {% for product in products %}
+        <li class='list-group-item'>
+          <p>{{product.name}}</a>
+
+          <form method='POST' action='/categories/{{categoryName}}/products/{{product.id}}?_method=DELETE'>
+            <div class='form-group'>
+              <button class='btn btn-danger'>Delete</button>
+            </div>
+        </form>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <form method='POST' action='/categories/{{categoryName}}?_method=DELETE'>
+        <div class='form-group'>
+          <button class='btn btn-danger'>Delete Category</button>
+        </div>
+    </form>
+
   </div>
 </div>
 

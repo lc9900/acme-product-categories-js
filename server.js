@@ -28,7 +28,7 @@ const server = app.listen(port, function(){
 app.use('/categories', categoryRoute);
 
 app.get('/', function(req, res){
-    res.render('index', {categories: db.getAllCategories()});
+    res.render('index', {categories: db.getCategoryNames()});
 });
 
 app.use(function(err, req, res, next){

@@ -1,7 +1,15 @@
+  // - getCategoryNames
+  // - getProductsByCategory
+  // - createProduct
+  // - deleteProduct
+  // - updateProduct
+  // - deleteCategory
+  // - createCategory
+
 var data = {
     "Food Category": [
         {name: 'Lucky Charm', id: 1},
-        {name: 'Lucky Charm', id: 2},
+        {name: 'Caesar Salad', id: 2},
     ],
     "Book Category": [
         {name: 'Book1', id: 1},
@@ -9,76 +17,43 @@ var data = {
     ]
 };
 
+function deleteCategory(category){
+    delete data[category];
+}
+
+function createCategory(name){
+    data[name] = [];
+}
+
+function deleteProduct(category, productId){
+    data[category] = data[category].filter(function(product){
+        return product.id !== productId;
+    });
+    // console.log(data[category]);
+}
 
 function getProductsByCategory(category){
     return data[category];
 }
 
-function getAllCategories(){
+function getCategoryNames(){
     return Object.keys(data);
+}
+
+function createProduct(category, productName){
+    var product = {
+                    name: productName,
+                    id: data[category].length+1
+                };
+    data[category].push(product);
+    // console.log(data[category]);
 }
 
 module.exports = {
     getProductsByCategory: getProductsByCategory,
-    getAllCategories: getAllCategories
+    getCategoryNames: getCategoryNames,
+    createProduct: createProduct,
+    deleteProduct: deleteProduct,
+    createCategory: createCategory,
+    deleteCategory: deleteCategory
 };
-
-
-
-
-
-
-
-/////////////////////////////////////////////
-// function add(name, rating){
-//     var newProduct = {
-//         id: counter++,
-//         name: name,
-//         rating: rating
-//     };
-//     data.push(newProduct);
-// };
-
-// // Base on product ID, returns the product
-// function findById(id){
-//     return data.filter(function(obj){
-//         return obj.id === id;
-//     })[0];
-// };
-
-// function remove(id){
-//     data = data.filter(function(obj){
-//         return obj.id !== id;
-//     });
-// };
-
-// // Returns data[index] which is an object who has the max rating in all products
-// function maxRating(){
-//     return data.reduce(function(maxObj, obj){
-//         if(obj.rating > maxObj.rating) maxObj = obj;
-//         return maxObj;
-//     });
-// }
-
-// function listAll(){
-//     return data;
-// }
-
-// module.exports = {
-//     add: add,
-//     findById: findById,
-//     remove: remove,
-//     maxRating: maxRating,
-//     listAll: listAll
-// };
-
-// Test code
-// console.log(findById(2));
-// remove(2);
-// console.log(data);
-// console.log(findById(2));
-// console.log(findById(3));
-
-// console.log(maxRating());
-// remove(4)
-// console.log(maxRating());

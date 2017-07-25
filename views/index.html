@@ -4,8 +4,8 @@
 <!-- Nav tabs -->
 <ul id='categoryTabs' class="nav nav-tabs" role="tablist">
     <li class="active"><a href="/">Home</a></li>
-    {% for cat in categories %}
-        <li><a href="/categories/{{cat}}/products">{{cat}}</a></li>
+    {% for category in categories %}
+        <li><a href="/categories/{{category}}/products">{{category}}</a></li>
     {% endfor %}
 </ul>
 
@@ -13,7 +13,7 @@
 <div id="tabContent" class="tab-content">
     <h2>Home</h2>
     <div role="tabpanel" class="tab-pane active well" id="home">
-        <form method='POST' action='/products'>
+        <form method='POST' action='/categories'>
             <div class='form-group'>
               <input name='categoryName' placeholder='category name' class='form-control'/>
             </div>
