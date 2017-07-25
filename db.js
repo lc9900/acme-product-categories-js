@@ -33,6 +33,7 @@ function deleteProduct(category, productId){
 }
 
 function getProductsByCategory(category){
+    if(! data[category]) throw "Invalid Category";
     return data[category];
 }
 
